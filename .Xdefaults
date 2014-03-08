@@ -1,0 +1,7 @@
+URxvt*transparent:true
+URxvt*saveLines:25000
+URxvt*foreground:#dddddd
+URxvt*background:Black
+URxvt*shading:5
+URxvt*scrollBar:false
+URxvt*pixelSize:22
