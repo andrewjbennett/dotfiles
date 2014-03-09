@@ -17,9 +17,10 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     , Run Network "ppp0" ["-t", "<rxbar>|<txbar>"] 10
                     , Run Com "sh ~/.tethering.sh" [] "data" 10
                     , Run Com "sh ~/.pidginnot.sh" [] "pidginnot" 10
+
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% | %swap% | %eth0%  } %StdinReader% { |  <fc=#ee9a00>%date%</fc> "
+       , template = "%cpu% | %memory% | %swap% | %eth0%  } %StdinReader% { %acpi% |  <fc=#ee9a00>%date%</fc> "
        }
 
