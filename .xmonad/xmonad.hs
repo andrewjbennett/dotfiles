@@ -8,6 +8,8 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ICCCMFocus
 
+import XMonad.Util.EZConfig
+
 import XMonad.Layout.Gaps
 import XMonad.Layout.NoBorders
 
@@ -43,7 +45,7 @@ instance LayoutClass l a => LayoutClass (Flip l) a where
 
 main = do
 xmproc <- spawnPipe "xmobar"
-xmonad $ defaultConfig
+xmonad $ ewmh defaultConfig
 	{ manageHook = manageDocks <+> manageHook defaultConfig
         , layoutHook = myLayouts
         , logHook = takeTopFocus >> dynamicLogWithPP xmobarPP
@@ -53,5 +55,14 @@ xmonad $ defaultConfig
         , focusFollowsMouse = False
         , startupHook = setWMName "LG3D"
 	, terminal = "urxvt"
-	}
+  , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+	} `additionalKeys`
+    [ ((mod1Mask, xK_o ), spawn "gnome-screenshot") 
+     ,((mod1Mask, xK_F10 ), spawn "gnome-screenshot -a")
+     ,((mod1Mask, xK_F7), spawn "xbacklight -3")
+     ,((mod1Mask, xK_F8), spawn "xbacklight +3")
+     ,((mod1Mask, xK_F5), spawn "amixer -D pulse sset Master 5%-")
+     ,((mod1Mask, xK_F6), spawn "amixer -D pulse sset Master 5%+")
+     ,((mod1Mask, xK_F9), spawn "monitor")
+    ] 
 	

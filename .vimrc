@@ -43,4 +43,8 @@ filetype plugin indent on     " required
 " NOTE: comments after Bundle commands are not allowed.
 " Put your stuff after this line
 
+set tags=./tags;~/src/cs3131
+
 syntax on
+set tabstop=2
+set sts=2 ts=2 sw=2 et

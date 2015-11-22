@@ -1,7 +1,10 @@
 URxvt*transparent:true
+URxvt*termName: rxvt
 URxvt*saveLines:25000
 URxvt*foreground:#eeeeee
 URxvt*background:Black
 URxvt*shading:5
 URxvt*scrollBar:false
 URxvt*pixelSize:22
+URxvt*urgentOnBell:true
+URxvt.urgentOnBell:true

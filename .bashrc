@@ -49,8 +49,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -122,6 +122,12 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias can=""
+alias has="sudo apt-get install"
+alias untzip="tar xf"
+
+alias ,="ssh"
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -141,3 +147,10 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+PATH=/usr/local/lib:/opt/os161/bin:$PATH
+
+
+export PATH="$PATH:/home/sarah/Muse"
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/sarah/Muse"
