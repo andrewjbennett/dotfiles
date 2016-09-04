@@ -21,15 +21,21 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export PATH="$PATH:/home/andrew/Muse"
+#export PATH="$PATH:/home/andrew/Muse"
 
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/andrew/Muse"
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/andrew/Muse"
 
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 5 --transparent true --tint 0x000000 --height 10 &
+#trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 5 --transparent true --tint 0x000000 --height 10 &
+
+xbindkeys
+
+synclient TapButton2=2
+synclient TapButton3=3
+
 
 redshift &
 
 rescuetime &
 
-monitor &
+#monitor &
 
