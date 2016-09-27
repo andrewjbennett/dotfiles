@@ -9,4 +9,3 @@ if [[ $percent -lt 10 ]]; then
   echo "LOW BATTERY!!!!!"
 fi
 
-

@@ -1,10 +1,13 @@
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+        , additionalFonts = ["xft:FontAwesome-10", "xft:Symbola"]
         , bgColor = "black"
         , fgColor = "grey"
         , position = Top
         , lowerOnStart = True
         , commands = [
 		Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                , Run BatteryP ["BAT1"] [] 10
+                , Run Wireless "wlp3s0" [] 10
 		, Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
 		, Run Memory ["-t","Mem: <usedratio>%"] 10
 		, Run Swap [] 10
@@ -15,11 +18,17 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
 		, Run StdinReader
 		, Run Network "ppp0" ["-t", "<rxbar>|<txbar>"] 10
 		, Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-		, Run Com "/bin/bash" ["-c",  "~/.battery.sh"]  "batt" 10
+		, Run Com "/bin/bash" ["-c",  "~/.battery.sh"]  "batt" 600
 		, Run Com "/bin/bash" ["-c", "~/.temp.sh"] "temp" 10
+		, Run Com "/bin/bash" ["-c", "~/bin/backlight.sh"] "backlight" 10
+                , Run Com "acpi" [] "" 10
+                , Run Com "/bin/bash" ["-c", "~/bin/charging.sh"] "discharging" 1
+                , Run Com "/bin/bash" ["-c", "~/bin/is-rescuetim-running.sh"] "rescuetim" 10
+                , Run Com "/bin/bash" ["-c", "~/bin/start-rescuetim.sh"] "rescuetim1" 10
+
 	]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% | %swap% | %temp% | %wlp3s0% | %batt%  } %StdinReader% { %acpi% |  <fc=#ee9a00>%date%</fc> "
+       , template = "%cpu% | %memory% | %swap% | %temp% | <fn=1></fn> %backlight%  | <fn=1> </fn>%wlp3s0% | %wlp3s0wi% |  %battery%  %discharging% } %StdinReader% { %rescuetim1% | <fn=1>%rescuetim%</fn> | %discharging% %acpi% |  <fc=#ee9a00>%date%</fc> "
        }
 }
