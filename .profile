@@ -32,6 +32,9 @@ xbindkeys
 synclient TapButton2=2
 synclient TapButton3=3
 
+/home/andrew/bin/xbattbar.sh
+#xbattbar -c -t 4  -i \#0e8bff -o \#ec251a -I \#8bff0e right &
+
 
 redshift &
 
