@@ -1,0 +1,9 @@
+[user]
+	email = andrew.bennett@unsw.edu.au
+	name = Andrew Bennett
+[push]
+	default = simple
+[core]
+	excludesfile = /home/andrew/.gitignore_global
+[merge]
+	tool = vimdiff

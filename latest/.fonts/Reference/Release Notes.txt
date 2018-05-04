@@ -1,0 +1,10 @@
+Cardigan Titling v1.0
+December 07 2016
+
+files included:
+Cardigan Titling Regular v1.0
+Cardigan Titling Italic v1.0
+Cardigan Titling Semi Bold v1.0
+Cardigan Titling Semi Bold Italic v1.0
+Cardigan Titling Bold v1.0
+Cardigan Titling Bold Italic v1.0

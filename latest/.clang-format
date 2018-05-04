@@ -1,0 +1,110 @@
+# maybe?
+#BasedOnStyle(WebKit)
+
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BreakBeforeBraces: Attach
+
+ColumnLimit: 80
+
+IndentWidth: 4
+
+Language: Cpp
+
+PointerAlignment: Right
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: Always # ???
+
+UseTab: Never
+
+
+
+# program layout order
+
+# header comment
+
+# meaningful names
+
+## functions: camelCase
+## main vars: camelCase
+## loop counters etc: single lowercase
+## typedefs: camelCase, unless ADT, then CamelCase
+## constants: UPPER_CASE_WITH_UNDERSCORES
+
+# layout
+## spaces, not tabs
+## 4 spaces
+## indent
+## may niclude one space before/after parentheses eg void doThing () {
+## compact {} placement
+## no lines over 72
+## no spaces before commas, one space after
+
+# if, while
+## always use {}, even for single statements
+## opening brace compactoy
+## braces around else
+## don't further indent chained elseif/else
+
+# declarations
+## variables at the top
+## one per line, unless related
+## vertically align the names, types and initialisations
+## initialised close to first use
+## structs and enums: typedefs
+## local functions prototypes start of file
+## local typedefs head of file
+## shared in a .h file
+
+# functions
+## return type on same line as function name
+## short as possible
+## single clearly-defined purpose
+
+# executable statements
+## one per line, not i=0; i=0;
+## don't use = as an operator (not i = j = 0; if (x = 1))
+## don't use comma operator (??)
+
+# fn definitions
+## static for all non-interface fns
+## prototypes for all functions
+## use (void) not ()
+## prototypes at the top
+## main at the top
+## sensible variable names in prototypes
+
+# structs
+## typedef
+## more rules
+
+# typedefs
+## concrete lowercase
+## abstract uppercase
+
+# comments
+## comments.
+
+# structure
+## no multiple returns
+## no break
+## no goto
+## no return inside a loop or if block
+
+# discouraged
+# ternary
+# break, continue
+# switch, case
+# global, static vars
+# register, extern
+# do {} while()
+# union, enum
+# pointer arithmetic from a pointer not an array
+# fuinction pointers
+# const
+
+## security
+# no syscalls or file io unless needed
+# no vulns
