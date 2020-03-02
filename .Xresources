@@ -2,11 +2,14 @@
 !URxvt*boldFont:          xft:monaco:style=Bold:antialias=true:size=10
 !URxvt*font:			-*-clean-medium-r-*--12-*-*-*-*-*-*-*
 URxvt*font:	fixed
+!URxvt*font:	fixed
 URxvt*boldFont: fixed	
-!URxvt.font: -misc-fixed-bold-r-normal--15-140-75-75-c-90-iso8859-1
+
+!URxvt.font: -misc-fixed-bold-r-normal--*-140-75-75-c-90-iso8859-1
 
 URxvt.foreground: #FFFFFF
-URxvt.background: rgba:2400/2400/2400/dcdc
+URxvt.background: rgba:2400/2400/2400/ffff
+!dcdc
 
 URxvt.color0: #000000
 URxvt.color1: #C75646

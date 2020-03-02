@@ -8,6 +8,8 @@ case $- in
       *) return;;
 esac
 
+#xrdb -merge ~/.Xresources&
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -16,8 +18,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=1000000
+HISTFILESIZE=20000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -58,6 +60,8 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # KIWIFRUIT=$(echo -e '\033[1;32m\033[30;42m(\033[37;42m\e[1mo\033[30;42m)\033[00m\033[1;32m\033[00m')
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] ${KIWIFRUIT} $ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -93,17 +97,31 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias ,="ssh"
+alias zid="egrep -o [0-9]{7}"
+
 
 alias wifi-list="nmcli dev wifi list"
 alias wifi-connect="nmcli connection up"
 alias wifi-homeconnect="wifi-connect '&router;'"
 alias wifi-homeconnect5="wifi-connect '&router5;'"
 
+clang-diff() { clang-format -style=file $2 > $1.cf && git diff --no-index $1 $1.cf && rm $1.cf; }
 
+1511_style() { /home/andrew/src/uni/comp1511/style/style.py $1 -z; }
+
+alias what="du -h -d1 | sort -h"
+alias wtf="fgrep -R"
+
+alias code='function _code(){ cat z$1/q*.final.c | egrep "(int)|(void) [a-zA-Z]+ ?\(" -A 200 -B2 | clang-format; };_code'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias asdf='setxkbmap dvorak'
+alias aoeu='setxkbmap us'
+
+alias infil="base64 -d | unxz"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

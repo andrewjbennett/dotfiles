@@ -1,4 +1,4 @@
-URxvt*transparent:true
+URxvt*transparent:false
 URxvt*termName: rxvt
 URxvt*saveLines:25000
 URxvt*foreground:#eeeeee

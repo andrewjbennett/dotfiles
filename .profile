@@ -21,24 +21,28 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-#export PATH="$PATH:/home/andrew/Muse"
-
-#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/andrew/Muse"
-
 #trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 5 --transparent true --tint 0x000000 --height 10 &
+
+# Why doesn't this work? :/
+xrdb -merge ~/.Xresources
 
 xbindkeys
 
 synclient TapButton2=2
 synclient TapButton3=3
 
-/home/andrew/bin/xbattbar.sh
+/home/andrew/bin/xbattbar.sh &
 #xbattbar -c -t 4  -i \#0e8bff -o \#ec251a -I \#8bff0e right &
-
 
 redshift &
 
 rescuetime &
 
+~/.fehbg &
+
+#selfspy &
+#workrave &
 #monitor &
 
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
