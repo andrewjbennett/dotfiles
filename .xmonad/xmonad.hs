@@ -56,6 +56,7 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9"] ++ (map snd myExtraWorkspac
 myKeys = [((mod1Mask, xK_F10 ), spawn "gnome-screenshot")
         ,((mod1Mask .|. controlMask, xK_l ), spawn "gnome-screensaver-command --lock")
         ,((mod1Mask, xK_o ), spawn "/home/andrew/bin/snip.sh")
+        ,((mod1Mask, xK_i ), spawn "gnome-screenshot")
         ,((mod1Mask, xK_F7), spawn "xbacklight -3")
         ,((mod1Mask, xK_F8), spawn "xbacklight +3")
         ,((mod1Mask, xK_F5), spawn "amixer -D pulse sset Master 5%-")
