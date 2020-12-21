@@ -5,7 +5,7 @@ then
     echo -n "running yay"; 
 else 
     echo -n "starting rescuetime...";
-    rescuetime &
+    rescuetime & 2> /dev/null
     exit
 fi
 

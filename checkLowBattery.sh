@@ -6,8 +6,9 @@ NOT_CHARGING="0"
 ICON="/usr/share/icons/ubuntu-mono-dark/status/24/battery-low.svg" # eye candy
 
 export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
-BATTERY_LEVEL=$(acpi -b | grep -P -o '[0-9]+(?=%)')
+BATTERY_LEVEL=$(acpi -b | grep -v "rate information unavailable" | grep -P -o '[1-9]+(?=%)') # | head -1)
 STATUS=$(cat $POWERSUPPLY)
 
 if [ $BATTERY_LEVEL -le $TOO_LOW -a $STATUS = $NOT_CHARGING ]
@@ -16,3 +17,4 @@ then
 fi
 
 exit 0
+
