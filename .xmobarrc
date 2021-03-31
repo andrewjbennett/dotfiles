@@ -1,35 +1,90 @@
+-- modified by jashank
+-- now uses like 5 watts less power ^_^
+
 Config
-    { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-    , overrideRedirect = False
-    , additionalFonts = ["xft:FontAwesome-10", "xft:Symbola"]
+    {
+
+    -- general behaviour
+    overrideRedirect = False -- sets the Override Redirect flag (Xlib)
+    , lowerOnStart = True    -- sends to bottom of window stack at start
+
+    -- appearance
+    , font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"  -- my favourite font <3
     , bgColor = "black"
     , fgColor = "grey"
     , position = Top
-    , lowerOnStart = True
-    , commands =
-        [ Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-        , Run BatteryP ["BAT1"] [] 10
-        , Run Wireless "wlp3s0" [] 10
-        , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-        , Run Memory ["-t","Mem: <usedratio>%"] 10
-        , Run Swap [] 10
-        , Run Com "uname" ["-s","-r"] "" 36000
-        , Run Com "whoami" [] "" 36000
-        , Run Com "hostname" [] "" 36000
-        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-        , Run StdinReader
-        , Run Network "ppp0" ["-t", "<rxbar>|<txbar>"] 10
-        , Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-        , Run Com "/bin/bash" ["-c",  "~/.battery.sh"]  "batt" 600
-        , Run Com "/bin/bash" ["-c", "~/.temp.sh"] "temp" 10
-        , Run Com "/bin/bash" ["-c", "~/bin/backlight.sh"] "backlight" 10
-        , Run Com "/bin/bash" ["-c", "~/bin/show-volume.sh"] "volume" 10
-        , Run Com "acpi" [] "" 10
-        , Run Com "/bin/bash" ["-c", "~/bin/charging.sh"] "discharging" 1
-        , Run Com "/bin/bash" ["-c", "~/bin/is-rescuetim-running.sh"] "rescuetim" 10
-        , Run Com "/bin/bash" ["-c", "~/bin/start-rescuetim.sh"] "rescuetim1" 10
-	]
+
+    -- used for symbols like brightness and speaker
+    , additionalFonts = ["xft:FontAwesome-10", "xft:Symbola"]
+
     , sepChar = "%"
     , alignSep = "}{"
-    , template = "%cpu% | %memory% | %swap% | %temp% | <fn=1></fn> %backlight% | %volume% | <fn=1> </fn>%wlp3s0% | %wlp3s0wi% |  %battery%  %discharging% } %StdinReader% { %rescuetim1% | <fn=1>%rescuetim%</fn> | %discharging% %acpi% |  <fc=#ee9a00>%date%</fc> }"
-    }
+
+    , template = "%cpu% | %memory% | %swap% | %coretemp% | <fn=1> </fn>%wlp3s0% | %wlp3s0wi% |  %battery% } %StdinReader% { %acpi% |  <fc=#ee9a00>%date%</fc> }"
+
+--  , template = "{} %StdinReader% {}"
+--  , template = "%cpu% | %memory% | %swap% | %coretemp% | <fn=1> </fn>%wlp3s0% | %wlp3s0wi% |  %battery% } %StdinReader% { %acpi% |  <fc=#ee9a00>%date%</fc> }"
+--  , template = "%cpu% | %memory% | %swap% | %coretemp% | <fn=1></fn> %backlight% | %volume% | <fn=1> </fn>%wlp3s0% | %wlp3s0wi% |  %battery%  %discharging% } %StdinReader% { %acpi% |  <fc=#ee9a00>%date%</fc> }"
+--  , template = "%cpu% | %memory% | %swap% | %temp% | <fn=1></fn> %backlight% | %volume% | <fn=1> </fn>%wlp3s0% | %wlp3s0wi% |  %battery%  %discharging% } %StdinReader% { %rescuetim1% | <fn=1>%rescuetim%</fn> | %discharging% %acpi% |  <fc=#ee9a00>%date%</fc> }"
+
+    , commands =
+
+        -- network, with hardcoded interfaces
+
+        [ Run StdinReader
+
+        , Run Network "enp2s0f0"    [ "-L", "0"
+                                    , "-H", "32"
+                                    , "--normal", "green"
+                                    , "--high", "red"
+                                    ] 10
+
+        , Run Network "wlp3s0"      [ "-L", "0"
+                                    , "-H", "32"
+                                    , "--normal", "green"
+                                    , "--high", "red"
+                                    ] 10
+
+        , Run Wireless "wlp3s0"     [
+                                    ] 50
+
+
+        , Run Cpu                   [ "-L", "3"
+                                    , "-H", "50"
+                                    , "--normal", "green"
+                                    , "--high", "red"
+                                    ] 10
+
+        , Run CoreTemp              [ "--template", "<core0>°C"
+                                    ] 50
+
+
+        , Run Memory                [ "-t", "Mem: <usedratio>%"
+                                    ] 10
+
+        , Run Swap                  [
+                                    ] 10
+
+        , Run BatteryP ["BAT0"] [] 40
+
+        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+
+        -- need to replace this
+        , Run Com "acpi" [] "" 10
+
+        -- I'm pretty sure these aren't used
+        --, Run Com "uname" ["-s","-r"] "" 36000
+        --, Run Com "whoami" [] "" 36000
+        --, Run Com "hostname" [] "" 36000
+        --, Run Network "ppp0" ["-t", "<rxbar>|<txbar>"] 10
+
+        -- Need to replace these
+        -- , Run Com "/bin/bash" ["-c",  "~/bin/battery.sh"]  "batt" 600
+        -- , Run Com "/bin/bash" ["-c", "~/bin/temp.sh"] "temp" 10
+        -- , Run Com "/bin/bash" ["-c", "~/bin/backlight.sh"] "backlight" 10
+        -- , Run Com "/bin/bash" ["-c", "~/bin/show-volume.sh"] "volume" 10
+        -- , Run Com "/bin/bash" ["-c", "~/bin/charging.sh"] "discharging" 1
+        -- , Run Com "/bin/bash" ["-c", "~/bin/is-rescuetim-running.sh"] "rescuetim" 10
+        -- , Run Com "/bin/bash" ["-c", "~/bin/start-rescuetim.sh"] "rescuetim1" 10
+    ]
+}
